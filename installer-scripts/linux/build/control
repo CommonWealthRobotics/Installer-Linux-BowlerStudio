@@ -1,0 +1,15 @@
+Source: bowlerstudio
+Version: BOWLERVERSION
+Section: utils
+Priority: extra
+Maintainer: Customer Support <mad.hephaestus@gmail.com>
+Homepage: http://commonwealthrobotics.com/
+Standards-Version: 3.9.7
+Build-Depends: make,autotools-dev, bash-completion, debhelper (>= 8.0.0) | debhelper (>= 9.0.0)
+
+Package: bowlerstudio
+Section: utils
+Architecture: all
+Provides: bowlerstudio
+Description: A Robotics IDE designed to ramp up knowledge of how to design systems for distributed production. 
+ Detailed description at https://github.com/CommonWealthRobotics/BowlerStudio/blob/master/README.md
