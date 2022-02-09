@@ -33,7 +33,7 @@ if (! test -e $JVMDIR/$JVERELEASE.tar.gz) then
 	unzipifiy $JVERELEASE $JVMDIR
 fi
 if (! test -e $AUTOUPDATE) then
-	wget https://github.com/CommonWealthRobotics/LatestFromGithubLaunch/releases/download/0.0.1/LatestFromGithubLaunch.jar -O $AUTOUPDATE
+	wget https://github.com/CommonWealthRobotics/LatestFromGithubLaunch/releases/latest/download/LatestFromGithubLaunch.jar -O $AUTOUPDATE
 fi
 
 $JVMDIR/bin/java -jar $AUTOUPDATE CommonWealthRobotics BowlerStudio BowlerStudio.jar $JVMDIR/bin/java -Dprism.forceGPU=true -jar 
