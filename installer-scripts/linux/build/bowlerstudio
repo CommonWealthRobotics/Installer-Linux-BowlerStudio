@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 EXE_NAME=bowlerstudio
 SCRIPT_EXPECTED=$HOME/bin/$EXE_NAME
 
@@ -12,8 +13,8 @@ if (! test -e $DESKTOP_FILE) then
 	echo "[Desktop Entry]
 	Version=1.0
 	Type=Application
-	Name=Halodi Eclipse 
-	Comment=Halodi configured Eclipse
+	Name=BowlerStudio
+	Comment=BowlerStudio Robotics IDE
 	Exec=$SCRIPT_EXPECTED
 	Icon=$ICON
 	Path=
@@ -70,5 +71,5 @@ if (! test -e $ICON) then
 	wget https://github.com/madhephaestus/Installer-Linux-BowlerStudio/releases/latest/download/splash.png -O $ICON
 fi
 
-
+set -e
 $JVMDIR/bin/java -jar $AUTOUPDATE CommonWealthRobotics BowlerStudio BowlerStudio.jar $JVMDIR/bin/java -Dprism.forceGPU=true -jar 
