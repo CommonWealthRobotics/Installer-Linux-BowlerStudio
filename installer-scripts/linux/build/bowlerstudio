@@ -1,6 +1,28 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+EXE_NAME=bowlerstudio
+SCRIPT_EXPECTED=$HOME/bin/$EXE_NAME
+
+DESKTOP_FILE=$HOME/bin/bowlerstudio.desktop
+ 
+SCRIPT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ICON=$HOME/bin/splash.png
+
+if (! test -e $DESKTOP_FILE) then
+	echo "[Desktop Entry]
+	Version=1.0
+	Type=Application
+	Name=Halodi Eclipse 
+	Comment=Halodi configured Eclipse
+	Exec=$SCRIPT_EXPECTED
+	Icon=$ICON
+	Path=
+	Terminal=false
+	StartupNotify=false" > $DESKTOP_FILE
+	chmod +x $DESKTOP_FILE
+	gio set $DESKTOP_FILE "metadata::trusted" yes
+	sudo desktop-file-install $DESKTOP_FILE
+fi
 
 #https://cdn.azul.com/zulu/bin/zulu8.42.0.23-ca-fx-jre8.0.232-linux_x64.tar.gz
 JVERELEASE=zulu8.44.0.13-ca-fx-jdk8.0.242-linux_x64
@@ -35,5 +57,18 @@ fi
 if (! test -e $AUTOUPDATE) then
 	wget https://github.com/CommonWealthRobotics/LatestFromGithubLaunch/releases/latest/download/LatestFromGithubLaunch.jar -O $AUTOUPDATE
 fi
+
+
+# Copy the script to $HOME/bin if it is not already there
+if ! [ "$SCRIPT" = "$HOME/bin" ]; then
+ echo "Script source copied to $HOME/bin from " $SCRIPT
+ cp $SCRIPT/$EXE_NAME $SCRIPT_EXPECTED
+ chmod +x  $SCRIPT_EXPECTED
+fi
+
+if (! test -e $ICON) then
+	wget https://github.com/madhephaestus/Installer-Linux-BowlerStudio/releases/latest/download/splash.png -O $ICON
+fi
+
 
 $JVMDIR/bin/java -jar $AUTOUPDATE CommonWealthRobotics BowlerStudio BowlerStudio.jar $JVMDIR/bin/java -Dprism.forceGPU=true -jar 
