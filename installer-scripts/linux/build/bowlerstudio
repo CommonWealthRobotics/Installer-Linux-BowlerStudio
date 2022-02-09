@@ -70,6 +70,16 @@ fi
 if (! test -e $ICON) then
 	wget https://github.com/madhephaestus/Installer-Linux-BowlerStudio/releases/latest/download/splash.png -O $ICON
 fi
-
 set -e
+if grep -q '$HOME/bin/' $HOME/.bashrc; then 
+	echo "Skipping adding ~/bin/ to $HOME/.bashrc, command already exists"; 
+else 
+	echo 'export PATH=$PATH:$HOME/bin/'  >> $HOME/.bashrc; 
+	echo 'echo Path: $PATH'  >> $HOME/.bashrc; 
+	echo 'Added $PATH=$PATH:$HOME/bin/ to ~/.bashrc'; 
+	source  $HOME/.bashrc
+fi
+source  $HOME/.bashrc
+
 $JVMDIR/bin/java -jar $AUTOUPDATE CommonWealthRobotics BowlerStudio BowlerStudio.jar $JVMDIR/bin/java -Dprism.forceGPU=true -jar 
+
